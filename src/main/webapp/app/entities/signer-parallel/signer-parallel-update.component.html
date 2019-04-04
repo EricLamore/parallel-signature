@@ -1,0 +1,107 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-signer-parallel-heading">Create or edit a Signer</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!signer.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="signer.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_status">Status</label>
+                    <select class="form-control" name="status" [(ngModel)]="signer.status" id="field_status" >
+                        <option value="NONE">NONE</option>
+                        <option value="CREATE">CREATE</option>
+                        <option value="LAUNCH">LAUNCH</option>
+                        <option value="FAILED">FAILED</option>
+                        <option value="CANCELED">CANCELED</option>
+                        <option value="FINISH">FINISH</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_firstname">Firstname</label>
+                    <input type="text" class="form-control" name="firstname" id="field_firstname"
+                        [(ngModel)]="signer.firstname" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_lastname">Lastname</label>
+                    <input type="text" class="form-control" name="lastname" id="field_lastname"
+                        [(ngModel)]="signer.lastname" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_organization">Organization</label>
+                    <input type="text" class="form-control" name="organization" id="field_organization"
+                        [(ngModel)]="signer.organization" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_emailAddress">Email Address</label>
+                    <input type="text" class="form-control" name="emailAddress" id="field_emailAddress"
+                        [(ngModel)]="signer.emailAddress" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_phoneNum">Phone Num</label>
+                    <input type="text" class="form-control" name="phoneNum" id="field_phoneNum"
+                        [(ngModel)]="signer.phoneNum" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_birthDate">Birth Date</label>
+                    <div class="input-group">
+                        <input id="field_birthDate" type="text" class="form-control" name="birthDate" ngbDatepicker  #birthDateDp="ngbDatepicker" [(ngModel)]="signer.birthDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="birthDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_successURL">Success URL</label>
+                    <input type="text" class="form-control" name="successURL" id="field_successURL"
+                        [(ngModel)]="signer.successURL" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cancelURL">Cancel URL</label>
+                    <input type="text" class="form-control" name="cancelURL" id="field_cancelURL"
+                        [(ngModel)]="signer.cancelURL" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_failURL">Fail URL</label>
+                    <input type="text" class="form-control" name="failURL" id="field_failURL"
+                        [(ngModel)]="signer.failURL" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_certificateType">Certificate Type</label>
+                    <select class="form-control" name="certificateType" [(ngModel)]="signer.certificateType" id="field_certificateType" >
+                        <option value="Simple">Simple</option>
+                        <option value="Certified">Certified</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transaction">Transaction</label>
+                    <select class="form-control" id="field_transaction" name="transaction" [(ngModel)]="signer.transaction">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="transactionOption.id === signer.transaction?.id ? signer.transaction : transactionOption" *ngFor="let transactionOption of transactions; trackBy: trackTransactionById">{{transactionOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_metaTransaction">Meta Transaction</label>
+                    <select class="form-control" id="field_metaTransaction" name="metaTransaction" [(ngModel)]="signer.metaTransaction" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="metaTransactionOption.id === signer.metaTransaction?.id ? signer.metaTransaction : metaTransactionOption" *ngFor="let metaTransactionOption of metatransactions; trackBy: trackMetaTransactionById">{{metaTransactionOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

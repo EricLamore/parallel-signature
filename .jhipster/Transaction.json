@@ -1,0 +1,33 @@
+{
+    "name": "Transaction",
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "TansactonsStatus",
+            "fieldValues": "None,Ready,Expired,Canceled,Failed,Completed"
+        },
+        {
+            "fieldName": "idUniversign",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "signer",
+            "otherEntityRelationshipName": "transaction",
+            "relationshipName": "signer",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190404141546",
+    "entityTableName": "transaction",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "parallel"
+}

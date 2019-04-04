@@ -1,0 +1,86 @@
+<div>
+    <h2 id="page-heading">
+        <span>Signers</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-signer-parallel" [routerLink]="['/signer-parallel/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Signer
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="signers">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Status</span></th>
+            <th><span>Firstname</span></th>
+            <th><span>Lastname</span></th>
+            <th><span>Organization</span></th>
+            <th><span>Email Address</span></th>
+            <th><span>Phone Num</span></th>
+            <th><span>Birth Date</span></th>
+            <th><span>Success URL</span></th>
+            <th><span>Cancel URL</span></th>
+            <th><span>Fail URL</span></th>
+            <th><span>Certificate Type</span></th>
+            <th><span>Transaction</span></th>
+            <th><span>Meta Transaction</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let signer of signers ;trackBy: trackId">
+                <td><a [routerLink]="['/signer-parallel', signer.id, 'view' ]">{{signer.id}}</a></td>
+                <td>{{signer.status}}</td>
+                <td>{{signer.firstname}}</td>
+                <td>{{signer.lastname}}</td>
+                <td>{{signer.organization}}</td>
+                <td>{{signer.emailAddress}}</td>
+                <td>{{signer.phoneNum}}</td>
+                <td>{{signer.birthDate | date:'mediumDate'}}</td>
+                <td>{{signer.successURL}}</td>
+                <td>{{signer.cancelURL}}</td>
+                <td>{{signer.failURL}}</td>
+                <td>{{signer.certificateType}}</td>
+                <td>
+                    <div *ngIf="signer.transaction">
+                        <a [routerLink]="['../transaction-parallel', signer.transaction?.id, 'view' ]" >{{signer.transaction?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="signer.metaTransaction">
+                        <a [routerLink]="['../meta-transaction-parallel', signer.metaTransaction?.id, 'view' ]" >{{signer.metaTransaction?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/signer-parallel', signer.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/signer-parallel', signer.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'signer-parallel', { outlets: { popup: signer.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

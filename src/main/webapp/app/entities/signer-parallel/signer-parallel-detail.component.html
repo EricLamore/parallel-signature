@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="signer">
+            <h2><span>Signer</span> {{signer.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Status</span></dt>
+                <dd>
+                    <span>{{signer.status}}</span>
+                </dd>
+                <dt><span>Firstname</span></dt>
+                <dd>
+                    <span>{{signer.firstname}}</span>
+                </dd>
+                <dt><span>Lastname</span></dt>
+                <dd>
+                    <span>{{signer.lastname}}</span>
+                </dd>
+                <dt><span>Organization</span></dt>
+                <dd>
+                    <span>{{signer.organization}}</span>
+                </dd>
+                <dt><span>Email Address</span></dt>
+                <dd>
+                    <span>{{signer.emailAddress}}</span>
+                </dd>
+                <dt><span>Phone Num</span></dt>
+                <dd>
+                    <span>{{signer.phoneNum}}</span>
+                </dd>
+                <dt><span>Birth Date</span></dt>
+                <dd>
+                    <span>{{signer.birthDate}}</span>
+                </dd>
+                <dt><span>Success URL</span></dt>
+                <dd>
+                    <span>{{signer.successURL}}</span>
+                </dd>
+                <dt><span>Cancel URL</span></dt>
+                <dd>
+                    <span>{{signer.cancelURL}}</span>
+                </dd>
+                <dt><span>Fail URL</span></dt>
+                <dd>
+                    <span>{{signer.failURL}}</span>
+                </dd>
+                <dt><span>Certificate Type</span></dt>
+                <dd>
+                    <span>{{signer.certificateType}}</span>
+                </dd>
+                <dt><span>Transaction</span></dt>
+                <dd>
+                    <div *ngIf="signer.transaction">
+                        <a [routerLink]="['/transaction-parallel', signer.transaction?.id, 'view']">{{signer.transaction?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Meta Transaction</span></dt>
+                <dd>
+                    <div *ngIf="signer.metaTransaction">
+                        <a [routerLink]="['/meta-transaction-parallel', signer.metaTransaction?.id, 'view']">{{signer.metaTransaction?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/signer-parallel', signer.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

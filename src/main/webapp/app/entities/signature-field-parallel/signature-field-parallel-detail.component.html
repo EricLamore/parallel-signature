@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="signatureField">
+            <h2><span>Signature Field</span> {{signatureField.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Page</span></dt>
+                <dd>
+                    <span>{{signatureField.page}}</span>
+                </dd>
+                <dt><span>X</span></dt>
+                <dd>
+                    <span>{{signatureField.x}}</span>
+                </dd>
+                <dt><span>Y</span></dt>
+                <dd>
+                    <span>{{signatureField.y}}</span>
+                </dd>
+                <dt><span>Image</span></dt>
+                <dd>
+                    <div *ngIf="signatureField.image">
+                        <a (click)="openFile(signatureField.imageContentType, signatureField.image)">open</a>
+                        {{signatureField.imageContentType}}, {{byteSize(signatureField.image)}}
+                    </div>
+                </dd>
+                <dt><span>Signer Id</span></dt>
+                <dd>
+                    <span>{{signatureField.signerId}}</span>
+                </dd>
+                <dt><span>Meta Transaction</span></dt>
+                <dd>
+                    <div *ngIf="signatureField.metaTransaction">
+                        <a [routerLink]="['/document-parallel', signatureField.metaTransaction?.id, 'view']">{{signatureField.metaTransaction?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/signature-field-parallel', signatureField.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
