@@ -1,0 +1,77 @@
+entity MetaTransaction {
+    status MetaTansactonsStatus
+    profile String,
+    owner String,
+    name String,
+}
+
+entity Document {
+	content Blob,
+    fileName String,
+    title String,
+}
+
+entity SignatureField {
+	page Integer,
+    x Integer,
+    y Integer,
+    image Blob,
+    signerId Long,
+}
+
+entity Signer {
+	status SignerStatus
+	firstname String,
+    lastname String,
+    organization String,
+    emailAddress String,
+    phoneNum String,
+    birthDate LocalDate,
+    successURL String,
+    cancelURL String,
+    failURL String,
+    certificateType CertificateType
+}
+
+entity Transaction {
+    status TansactonsStatus,
+    idUniversign String,
+}
+
+enum CertificateType {
+ Simple, Certified, Advanced
+}
+
+enum TansactonsStatus {
+ None, Ready, Expired, Canceled, Failed, Completed
+}
+
+enum MetaTansactonsStatus {
+ NONE, CREATE, LAUNCH, CANCELED, FINISH
+}
+
+enum SignerStatus {
+ NONE, CREATE, LAUNCH, FAILED, CANCELED, FINISH
+}
+
+relationship OneToMany {
+  MetaTransaction{documents} to Document{metaTransaction}
+}
+
+relationship OneToMany {
+  MetaTransaction{signers} to Signer{metaTransaction}
+}
+
+relationship OneToMany {
+  Document{documents} to SignatureField{metaTransaction}
+}
+
+relationship OneToOne {
+  Signer{transaction} to Transaction{signer}
+}
+
+paginate MetaTransaction with pagination
+
+service all with serviceImpl
+
+angularSuffix * with parallel
