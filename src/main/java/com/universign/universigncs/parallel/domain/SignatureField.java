@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -21,12 +22,15 @@ public class SignatureField implements Serializable {
     @Id
     private String id;
 
+    @NotNull
     @Field("page")
     private Integer page;
 
+    @NotNull
     @Field("x")
     private Integer x;
 
+    @NotNull
     @Field("y")
     private Integer y;
 
@@ -36,6 +40,7 @@ public class SignatureField implements Serializable {
     @Field("image_content_type")
     private String imageContentType;
 
+    @NotNull
     @Field("signer_id")
     private Long signerId;
 

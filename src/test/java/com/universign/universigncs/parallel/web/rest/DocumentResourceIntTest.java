@@ -145,6 +145,23 @@ public class DocumentResourceIntTest {
     }
 
     @Test
+    public void checkFileNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = documentRepository.findAll().size();
+        // set the field null
+        document.setFileName(null);
+
+        // Create the Document, which fails.
+
+        restDocumentMockMvc.perform(post("/api/documents")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(document)))
+            .andExpect(status().isBadRequest());
+
+        List<Document> documentList = documentRepository.findAll();
+        assertThat(documentList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     public void getAllDocuments() throws Exception {
         // Initialize the database
         documentRepository.save(document);

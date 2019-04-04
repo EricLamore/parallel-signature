@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -29,15 +30,18 @@ public class Signer implements Serializable {
     @Field("status")
     private SignerStatus status;
 
+    @NotNull
     @Field("firstname")
     private String firstname;
 
+    @NotNull
     @Field("lastname")
     private String lastname;
 
     @Field("organization")
     private String organization;
 
+    @NotNull
     @Field("email_address")
     private String emailAddress;
 

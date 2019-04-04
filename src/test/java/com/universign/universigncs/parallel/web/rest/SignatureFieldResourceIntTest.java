@@ -155,6 +155,74 @@ public class SignatureFieldResourceIntTest {
     }
 
     @Test
+    public void checkPageIsRequired() throws Exception {
+        int databaseSizeBeforeTest = signatureFieldRepository.findAll().size();
+        // set the field null
+        signatureField.setPage(null);
+
+        // Create the SignatureField, which fails.
+
+        restSignatureFieldMockMvc.perform(post("/api/signature-fields")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(signatureField)))
+            .andExpect(status().isBadRequest());
+
+        List<SignatureField> signatureFieldList = signatureFieldRepository.findAll();
+        assertThat(signatureFieldList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    public void checkXIsRequired() throws Exception {
+        int databaseSizeBeforeTest = signatureFieldRepository.findAll().size();
+        // set the field null
+        signatureField.setX(null);
+
+        // Create the SignatureField, which fails.
+
+        restSignatureFieldMockMvc.perform(post("/api/signature-fields")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(signatureField)))
+            .andExpect(status().isBadRequest());
+
+        List<SignatureField> signatureFieldList = signatureFieldRepository.findAll();
+        assertThat(signatureFieldList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    public void checkYIsRequired() throws Exception {
+        int databaseSizeBeforeTest = signatureFieldRepository.findAll().size();
+        // set the field null
+        signatureField.setY(null);
+
+        // Create the SignatureField, which fails.
+
+        restSignatureFieldMockMvc.perform(post("/api/signature-fields")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(signatureField)))
+            .andExpect(status().isBadRequest());
+
+        List<SignatureField> signatureFieldList = signatureFieldRepository.findAll();
+        assertThat(signatureFieldList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    public void checkSignerIdIsRequired() throws Exception {
+        int databaseSizeBeforeTest = signatureFieldRepository.findAll().size();
+        // set the field null
+        signatureField.setSignerId(null);
+
+        // Create the SignatureField, which fails.
+
+        restSignatureFieldMockMvc.perform(post("/api/signature-fields")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(signatureField)))
+            .andExpect(status().isBadRequest());
+
+        List<SignatureField> signatureFieldList = signatureFieldRepository.findAll();
+        assertThat(signatureFieldList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     public void getAllSignatureFields() throws Exception {
         // Initialize the database
         signatureFieldRepository.save(signatureField);

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -40,7 +41,7 @@ public class DocumentResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/documents")
-    public ResponseEntity<Document> createDocument(@RequestBody Document document) throws URISyntaxException {
+    public ResponseEntity<Document> createDocument(@Valid @RequestBody Document document) throws URISyntaxException {
         log.debug("REST request to save Document : {}", document);
         if (document.getId() != null) {
             throw new BadRequestAlertException("A new document cannot already have an ID", ENTITY_NAME, "idexists");
@@ -61,7 +62,7 @@ public class DocumentResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/documents")
-    public ResponseEntity<Document> updateDocument(@RequestBody Document document) throws URISyntaxException {
+    public ResponseEntity<Document> updateDocument(@Valid @RequestBody Document document) throws URISyntaxException {
         log.debug("REST request to update Document : {}", document);
         if (document.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

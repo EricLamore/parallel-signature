@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -45,7 +46,7 @@ public class MetaTransactionResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/meta-transactions")
-    public ResponseEntity<MetaTransaction> createMetaTransaction(@RequestBody MetaTransaction metaTransaction) throws URISyntaxException {
+    public ResponseEntity<MetaTransaction> createMetaTransaction(@Valid @RequestBody MetaTransaction metaTransaction) throws URISyntaxException {
         log.debug("REST request to save MetaTransaction : {}", metaTransaction);
         if (metaTransaction.getId() != null) {
             throw new BadRequestAlertException("A new metaTransaction cannot already have an ID", ENTITY_NAME, "idexists");
@@ -66,7 +67,7 @@ public class MetaTransactionResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/meta-transactions")
-    public ResponseEntity<MetaTransaction> updateMetaTransaction(@RequestBody MetaTransaction metaTransaction) throws URISyntaxException {
+    public ResponseEntity<MetaTransaction> updateMetaTransaction(@Valid @RequestBody MetaTransaction metaTransaction) throws URISyntaxException {
         log.debug("REST request to update MetaTransaction : {}", metaTransaction);
         if (metaTransaction.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

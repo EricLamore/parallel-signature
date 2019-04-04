@@ -23,7 +23,13 @@
                 <div class="form-group">
                     <label class="form-control-label" for="field_idUniversign">Id Universign</label>
                     <input type="text" class="form-control" name="idUniversign" id="field_idUniversign"
-                        [(ngModel)]="transaction.idUniversign" />
+                        [(ngModel)]="transaction.idUniversign" required/>
+                    <div [hidden]="!(editForm.controls.idUniversign?.dirty && editForm.controls.idUniversign?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.idUniversign?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
 
             </div>

@@ -8,7 +8,10 @@
         },
         {
             "fieldName": "idUniversign",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "relationships": [

@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -26,6 +27,7 @@ public class Transaction implements Serializable {
     @Field("status")
     private TansactonsStatus status;
 
+    @NotNull
     @Field("id_universign")
     private String idUniversign;
 

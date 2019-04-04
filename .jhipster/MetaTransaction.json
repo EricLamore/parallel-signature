@@ -12,7 +12,10 @@
         },
         {
             "fieldName": "owner",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "name",

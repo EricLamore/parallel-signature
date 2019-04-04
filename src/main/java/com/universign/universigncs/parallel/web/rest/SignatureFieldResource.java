@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -40,7 +41,7 @@ public class SignatureFieldResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/signature-fields")
-    public ResponseEntity<SignatureField> createSignatureField(@RequestBody SignatureField signatureField) throws URISyntaxException {
+    public ResponseEntity<SignatureField> createSignatureField(@Valid @RequestBody SignatureField signatureField) throws URISyntaxException {
         log.debug("REST request to save SignatureField : {}", signatureField);
         if (signatureField.getId() != null) {
             throw new BadRequestAlertException("A new signatureField cannot already have an ID", ENTITY_NAME, "idexists");
@@ -61,7 +62,7 @@ public class SignatureFieldResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/signature-fields")
-    public ResponseEntity<SignatureField> updateSignatureField(@RequestBody SignatureField signatureField) throws URISyntaxException {
+    public ResponseEntity<SignatureField> updateSignatureField(@Valid @RequestBody SignatureField signatureField) throws URISyntaxException {
         log.debug("REST request to update SignatureField : {}", signatureField);
         if (signatureField.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

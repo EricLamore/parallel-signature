@@ -23,12 +23,24 @@
                 <div class="form-group">
                     <label class="form-control-label" for="field_firstname">Firstname</label>
                     <input type="text" class="form-control" name="firstname" id="field_firstname"
-                        [(ngModel)]="signer.firstname" />
+                        [(ngModel)]="signer.firstname" required/>
+                    <div [hidden]="!(editForm.controls.firstname?.dirty && editForm.controls.firstname?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.firstname?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_lastname">Lastname</label>
                     <input type="text" class="form-control" name="lastname" id="field_lastname"
-                        [(ngModel)]="signer.lastname" />
+                        [(ngModel)]="signer.lastname" required/>
+                    <div [hidden]="!(editForm.controls.lastname?.dirty && editForm.controls.lastname?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.lastname?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_organization">Organization</label>
@@ -38,7 +50,13 @@
                 <div class="form-group">
                     <label class="form-control-label" for="field_emailAddress">Email Address</label>
                     <input type="text" class="form-control" name="emailAddress" id="field_emailAddress"
-                        [(ngModel)]="signer.emailAddress" />
+                        [(ngModel)]="signer.emailAddress" required/>
+                    <div [hidden]="!(editForm.controls.emailAddress?.dirty && editForm.controls.emailAddress?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.emailAddress?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_phoneNum">Phone Num</label>
