@@ -1,30 +1,30 @@
 entity MetaTransaction {
     status MetaTansactonsStatus
     profile String,
-    owner String,
+    owner String required,
     name String,
 }
 
 entity Document {
-	content Blob,
-    fileName String,
+	content Blob required,
+    fileName String required,
     title String,
 }
 
 entity SignatureField {
-	page Integer,
-    x Integer,
-    y Integer,
+	page Integer required,
+    x Integer required,
+    y Integer required,
     image Blob,
-    signerId Long,
+    signerId Long required,
 }
 
 entity Signer {
 	status SignerStatus
-	firstname String,
-    lastname String,
+	firstname String required,
+    lastname String required,
     organization String,
-    emailAddress String,
+    emailAddress String required,
     phoneNum String,
     birthDate LocalDate,
     successURL String,
@@ -35,7 +35,7 @@ entity Signer {
 
 entity Transaction {
     status TansactonsStatus,
-    idUniversign String,
+    idUniversign String required,
 }
 
 enum CertificateType {

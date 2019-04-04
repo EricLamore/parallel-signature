@@ -12,17 +12,47 @@
                 <div class="form-group">
                     <label class="form-control-label" for="field_page">Page</label>
                     <input type="number" class="form-control" name="page" id="field_page"
-                        [(ngModel)]="signatureField.page" />
+                        [(ngModel)]="signatureField.page" required/>
+                    <div [hidden]="!(editForm.controls.page?.dirty && editForm.controls.page?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.page?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.page?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_x">X</label>
                     <input type="number" class="form-control" name="x" id="field_x"
-                        [(ngModel)]="signatureField.x" />
+                        [(ngModel)]="signatureField.x" required/>
+                    <div [hidden]="!(editForm.controls.x?.dirty && editForm.controls.x?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.x?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.x?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_y">Y</label>
                     <input type="number" class="form-control" name="y" id="field_y"
-                        [(ngModel)]="signatureField.y" />
+                        [(ngModel)]="signatureField.y" required/>
+                    <div [hidden]="!(editForm.controls.y?.dirty && editForm.controls.y?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.y?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.y?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_image">Image</label>
@@ -45,7 +75,17 @@
                 <div class="form-group">
                     <label class="form-control-label" for="field_signerId">Signer Id</label>
                     <input type="number" class="form-control" name="signerId" id="field_signerId"
-                        [(ngModel)]="signatureField.signerId" />
+                        [(ngModel)]="signatureField.signerId" required/>
+                    <div [hidden]="!(editForm.controls.signerId?.dirty && editForm.controls.signerId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.signerId?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.signerId?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
                 </div>
 
                 <div class="form-group">

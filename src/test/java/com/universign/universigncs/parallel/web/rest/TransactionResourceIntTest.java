@@ -136,6 +136,23 @@ public class TransactionResourceIntTest {
     }
 
     @Test
+    public void checkIdUniversignIsRequired() throws Exception {
+        int databaseSizeBeforeTest = transactionRepository.findAll().size();
+        // set the field null
+        transaction.setIdUniversign(null);
+
+        // Create the Transaction, which fails.
+
+        restTransactionMockMvc.perform(post("/api/transactions")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(transaction)))
+            .andExpect(status().isBadRequest());
+
+        List<Transaction> transactionList = transactionRepository.findAll();
+        assertThat(transactionList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     public void getAllTransactions() throws Exception {
         // Initialize the database
         transactionRepository.save(transaction);

@@ -146,6 +146,23 @@ public class MetaTransactionResourceIntTest {
     }
 
     @Test
+    public void checkOwnerIsRequired() throws Exception {
+        int databaseSizeBeforeTest = metaTransactionRepository.findAll().size();
+        // set the field null
+        metaTransaction.setOwner(null);
+
+        // Create the MetaTransaction, which fails.
+
+        restMetaTransactionMockMvc.perform(post("/api/meta-transactions")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(metaTransaction)))
+            .andExpect(status().isBadRequest());
+
+        List<MetaTransaction> metaTransactionList = metaTransactionRepository.findAll();
+        assertThat(metaTransactionList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     public void getAllMetaTransactions() throws Exception {
         // Initialize the database
         metaTransactionRepository.save(metaTransaction);

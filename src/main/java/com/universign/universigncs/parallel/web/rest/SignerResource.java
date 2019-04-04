@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -40,7 +41,7 @@ public class SignerResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/signers")
-    public ResponseEntity<Signer> createSigner(@RequestBody Signer signer) throws URISyntaxException {
+    public ResponseEntity<Signer> createSigner(@Valid @RequestBody Signer signer) throws URISyntaxException {
         log.debug("REST request to save Signer : {}", signer);
         if (signer.getId() != null) {
             throw new BadRequestAlertException("A new signer cannot already have an ID", ENTITY_NAME, "idexists");
@@ -61,7 +62,7 @@ public class SignerResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/signers")
-    public ResponseEntity<Signer> updateSigner(@RequestBody Signer signer) throws URISyntaxException {
+    public ResponseEntity<Signer> updateSigner(@Valid @RequestBody Signer signer) throws URISyntaxException {
         log.debug("REST request to update Signer : {}", signer);
         if (signer.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

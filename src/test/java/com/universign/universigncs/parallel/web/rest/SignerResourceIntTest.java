@@ -184,6 +184,57 @@ public class SignerResourceIntTest {
     }
 
     @Test
+    public void checkFirstnameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = signerRepository.findAll().size();
+        // set the field null
+        signer.setFirstname(null);
+
+        // Create the Signer, which fails.
+
+        restSignerMockMvc.perform(post("/api/signers")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(signer)))
+            .andExpect(status().isBadRequest());
+
+        List<Signer> signerList = signerRepository.findAll();
+        assertThat(signerList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    public void checkLastnameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = signerRepository.findAll().size();
+        // set the field null
+        signer.setLastname(null);
+
+        // Create the Signer, which fails.
+
+        restSignerMockMvc.perform(post("/api/signers")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(signer)))
+            .andExpect(status().isBadRequest());
+
+        List<Signer> signerList = signerRepository.findAll();
+        assertThat(signerList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    public void checkEmailAddressIsRequired() throws Exception {
+        int databaseSizeBeforeTest = signerRepository.findAll().size();
+        // set the field null
+        signer.setEmailAddress(null);
+
+        // Create the Signer, which fails.
+
+        restSignerMockMvc.perform(post("/api/signers")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(signer)))
+            .andExpect(status().isBadRequest());
+
+        List<Signer> signerList = signerRepository.findAll();
+        assertThat(signerList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     public void getAllSigners() throws Exception {
         // Initialize the database
         signerRepository.save(signer);
