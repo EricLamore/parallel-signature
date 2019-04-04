@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="metaTransaction">
+            <h2><span>Meta Transaction</span> {{metaTransaction.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Status</span></dt>
+                <dd>
+                    <span>{{metaTransaction.status}}</span>
+                </dd>
+                <dt><span>Profile</span></dt>
+                <dd>
+                    <span>{{metaTransaction.profile}}</span>
+                </dd>
+                <dt><span>Owner</span></dt>
+                <dd>
+                    <span>{{metaTransaction.owner}}</span>
+                </dd>
+                <dt><span>Name</span></dt>
+                <dd>
+                    <span>{{metaTransaction.name}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/meta-transaction-parallel', metaTransaction.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

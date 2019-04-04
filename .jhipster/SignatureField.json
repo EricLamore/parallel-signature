@@ -1,0 +1,45 @@
+{
+    "name": "SignatureField",
+    "fields": [
+        {
+            "fieldName": "page",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "x",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "y",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "image",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "signerId",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "document",
+            "otherEntityRelationshipName": "documents",
+            "relationshipName": "metaTransaction",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190404141544",
+    "entityTableName": "signature_field",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "parallel"
+}

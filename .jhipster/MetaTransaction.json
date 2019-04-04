@@ -1,0 +1,46 @@
+{
+    "name": "MetaTransaction",
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "MetaTansactonsStatus",
+            "fieldValues": "NONE,CREATE,LAUNCH,CANCELED,FINISH"
+        },
+        {
+            "fieldName": "profile",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "owner",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "document",
+            "otherEntityRelationshipName": "metaTransaction",
+            "relationshipName": "documents"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "signer",
+            "otherEntityRelationshipName": "metaTransaction",
+            "relationshipName": "signers"
+        }
+    ],
+    "changelogDate": "20190404141542",
+    "entityTableName": "meta_transaction",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "parallel"
+}

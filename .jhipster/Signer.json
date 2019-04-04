@@ -1,0 +1,78 @@
+{
+    "name": "Signer",
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "SignerStatus",
+            "fieldValues": "NONE,CREATE,LAUNCH,FAILED,CANCELED,FINISH"
+        },
+        {
+            "fieldName": "firstname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "organization",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "emailAddress",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phoneNum",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "birthDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "successURL",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cancelURL",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "failURL",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "certificateType",
+            "fieldType": "CertificateType",
+            "fieldValues": "Simple,Certified,Advanced"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "transaction",
+            "otherEntityRelationshipName": "signer",
+            "relationshipName": "transaction",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "metaTransaction",
+            "otherEntityRelationshipName": "signers",
+            "relationshipName": "metaTransaction",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190404141545",
+    "entityTableName": "signer",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "parallel"
+}
