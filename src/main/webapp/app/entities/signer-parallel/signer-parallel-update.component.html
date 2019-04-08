@@ -89,12 +89,52 @@
                         [(ngModel)]="signer.failURL" />
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" for="field_callBackUrl">Call Back Url</label>
+                    <input type="text" class="form-control" name="callBackUrl" id="field_callBackUrl"
+                        [(ngModel)]="signer.callBackUrl" />
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" for="field_certificateType">Certificate Type</label>
                     <select class="form-control" name="certificateType" [(ngModel)]="signer.certificateType" id="field_certificateType" >
                         <option value="Simple">Simple</option>
                         <option value="Certified">Certified</option>
                         <option value="Advanced">Advanced</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_relaunchFrequency">Relaunch Frequency</label>
+                    <input type="number" class="form-control" name="relaunchFrequency" id="field_relaunchFrequency"
+                        [(ngModel)]="signer.relaunchFrequency" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_lastRelaunch">Last Relaunch</label>
+                    <div class="input-group">
+                        <input id="field_lastRelaunch" type="text" class="form-control" name="lastRelaunch" ngbDatepicker  #lastRelaunchDp="ngbDatepicker" [(ngModel)]="signer.lastRelaunch"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="lastRelaunchDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sendSignedDocumentsByEmail">Send Signed Documents By Email</label>
+                    <input type="checkbox" class="form-control" name="sendSignedDocumentsByEmail" id="field_sendSignedDocumentsByEmail"
+                        [(ngModel)]="signer.sendSignedDocumentsByEmail" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_textForInvitationEmail">Text For Invitation Email</label>
+                    <input type="text" class="form-control" name="textForInvitationEmail" id="field_textForInvitationEmail"
+                        [(ngModel)]="signer.textForInvitationEmail" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_textForRelaunchEmail">Text For Relaunch Email</label>
+                    <input type="text" class="form-control" name="textForRelaunchEmail" id="field_textForRelaunchEmail"
+                        [(ngModel)]="signer.textForRelaunchEmail" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_textForSignedDocumentsEmail">Text For Signed Documents Email</label>
+                    <input type="text" class="form-control" name="textForSignedDocumentsEmail" id="field_textForSignedDocumentsEmail"
+                        [(ngModel)]="signer.textForSignedDocumentsEmail" />
                 </div>
 
                 <div class="form-group">

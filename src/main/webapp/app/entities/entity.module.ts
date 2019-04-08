@@ -43,6 +43,26 @@ import { RouterModule } from '@angular/router';
             {
                 path: 'transaction-parallel',
                 loadChildren: './transaction-parallel/transaction-parallel.module#ParallelSignatureTransactionParallelModule'
+            },
+            {
+                path: 'meta-transaction-parallel',
+                loadChildren: './meta-transaction-parallel/meta-transaction-parallel.module#ParallelSignatureMetaTransactionParallelModule'
+            },
+            {
+                path: 'documents-parallel',
+                loadChildren: './documents-parallel/documents-parallel.module#ParallelSignatureDocumentsParallelModule'
+            },
+            {
+                path: 'signature-field-parallel',
+                loadChildren: './signature-field-parallel/signature-field-parallel.module#ParallelSignatureSignatureFieldParallelModule'
+            },
+            {
+                path: 'signer-parallel',
+                loadChildren: './signer-parallel/signer-parallel.module#ParallelSignatureSignerParallelModule'
+            },
+            {
+                path: 'transaction-parallel',
+                loadChildren: './transaction-parallel/transaction-parallel.module#ParallelSignatureTransactionParallelModule'
             }
             /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
         ])

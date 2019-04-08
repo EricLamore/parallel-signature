@@ -19,6 +19,10 @@
             <th jhiSortBy="profile"><span>Profile</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="owner"><span>Owner</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="name"><span>Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="displayDateTimeOnSignatureField"><span>Display Date Time On Signature Field</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="geometreSignatureRequired"><span>Geometre Signature Required</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="logoForGeometreSignatureField"><span>Logo For Geometre Signature Field</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="metatransactionDuration"><span>Metatransaction Duration</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -29,6 +33,13 @@
                 <td>{{metaTransaction.profile}}</td>
                 <td>{{metaTransaction.owner}}</td>
                 <td>{{metaTransaction.name}}</td>
+                <td>{{metaTransaction.displayDateTimeOnSignatureField}}</td>
+                <td>{{metaTransaction.geometreSignatureRequired}}</td>
+                <td>
+                    <a *ngIf="metaTransaction.logoForGeometreSignatureField" (click)="openFile(metaTransaction.logoForGeometreSignatureFieldContentType, metaTransaction.logoForGeometreSignatureField)">open</a>
+                    <span *ngIf="metaTransaction.logoForGeometreSignatureField">{{metaTransaction.logoForGeometreSignatureFieldContentType}}, {{byteSize(metaTransaction.logoForGeometreSignatureField)}}</span>
+                </td>
+                <td>{{metaTransaction.metatransactionDuration}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

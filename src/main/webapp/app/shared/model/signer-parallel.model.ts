@@ -29,7 +29,14 @@ export interface ISignerParallel {
     successURL?: string;
     cancelURL?: string;
     failURL?: string;
+    callBackUrl?: string;
     certificateType?: CertificateType;
+    relaunchFrequency?: number;
+    lastRelaunch?: Moment;
+    sendSignedDocumentsByEmail?: boolean;
+    textForInvitationEmail?: string;
+    textForRelaunchEmail?: string;
+    textForSignedDocumentsEmail?: string;
     transaction?: ITransactionParallel;
     metaTransaction?: IMetaTransactionParallel;
 }
@@ -47,8 +54,17 @@ export class SignerParallel implements ISignerParallel {
         public successURL?: string,
         public cancelURL?: string,
         public failURL?: string,
+        public callBackUrl?: string,
         public certificateType?: CertificateType,
+        public relaunchFrequency?: number,
+        public lastRelaunch?: Moment,
+        public sendSignedDocumentsByEmail?: boolean,
+        public textForInvitationEmail?: string,
+        public textForRelaunchEmail?: string,
+        public textForSignedDocumentsEmail?: string,
         public transaction?: ITransactionParallel,
         public metaTransaction?: IMetaTransactionParallel
-    ) {}
+    ) {
+        this.sendSignedDocumentsByEmail = this.sendSignedDocumentsByEmail || false;
+    }
 }

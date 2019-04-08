@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { JhiDataUtils } from 'ng-jhipster';
 
 import { IMetaTransactionParallel } from 'app/shared/model/meta-transaction-parallel.model';
 
@@ -10,7 +11,7 @@ import { IMetaTransactionParallel } from 'app/shared/model/meta-transaction-para
 export class MetaTransactionParallelDetailComponent implements OnInit {
     metaTransaction: IMetaTransactionParallel;
 
-    constructor(protected activatedRoute: ActivatedRoute) {}
+    constructor(protected dataUtils: JhiDataUtils, protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ metaTransaction }) => {
@@ -18,6 +19,13 @@ export class MetaTransactionParallelDetailComponent implements OnInit {
         });
     }
 
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
+    }
     previousState() {
         window.history.back();
     }

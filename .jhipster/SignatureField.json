@@ -38,7 +38,7 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "otherEntityName": "document",
+            "otherEntityName": "documents",
             "otherEntityRelationshipName": "documents",
             "relationshipName": "metaTransaction",
             "otherEntityField": "id"

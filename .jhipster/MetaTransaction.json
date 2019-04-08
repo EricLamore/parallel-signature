@@ -20,12 +20,29 @@
         {
             "fieldName": "name",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "displayDateTimeOnSignatureField",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "geometreSignatureRequired",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "logoForGeometreSignatureField",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "metatransactionDuration",
+            "fieldType": "Integer"
         }
     ],
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "otherEntityName": "document",
+            "otherEntityName": "documents",
             "otherEntityRelationshipName": "metaTransaction",
             "relationshipName": "documents"
         },

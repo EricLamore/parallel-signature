@@ -47,7 +47,7 @@ public class SignatureField implements Serializable {
     @DBRef
     @Field("metaTransaction")
     @JsonIgnoreProperties("documents")
-    private Document metaTransaction;
+    private Documents metaTransaction;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public String getId() {
@@ -136,17 +136,17 @@ public class SignatureField implements Serializable {
         this.signerId = signerId;
     }
 
-    public Document getMetaTransaction() {
+    public Documents getMetaTransaction() {
         return metaTransaction;
     }
 
-    public SignatureField metaTransaction(Document document) {
-        this.metaTransaction = document;
+    public SignatureField metaTransaction(Documents documents) {
+        this.metaTransaction = documents;
         return this;
     }
 
-    public void setMetaTransaction(Document document) {
-        this.metaTransaction = document;
+    public void setMetaTransaction(Documents documents) {
+        this.metaTransaction = documents;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

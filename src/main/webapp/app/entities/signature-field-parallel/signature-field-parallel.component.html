@@ -37,7 +37,7 @@
                 <td>{{signatureField.signerId}}</td>
                 <td>
                     <div *ngIf="signatureField.metaTransaction">
-                        <a [routerLink]="['../document-parallel', signatureField.metaTransaction?.id, 'view' ]" >{{signatureField.metaTransaction?.id}}</a>
+                        <a [routerLink]="['../documents-parallel', signatureField.metaTransaction?.id, 'view' ]" >{{signatureField.metaTransaction?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

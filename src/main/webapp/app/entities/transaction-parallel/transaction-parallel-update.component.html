@@ -18,18 +18,18 @@
                         <option value="Canceled">Canceled</option>
                         <option value="Failed">Failed</option>
                         <option value="Completed">Completed</option>
+                        <option value="Outdated">Outdated</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_idUniversign">Id Universign</label>
                     <input type="text" class="form-control" name="idUniversign" id="field_idUniversign"
-                        [(ngModel)]="transaction.idUniversign" required/>
-                    <div [hidden]="!(editForm.controls.idUniversign?.dirty && editForm.controls.idUniversign?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.idUniversign?.errors?.required">
-                        This field is required.
-                        </small>
-                    </div>
+                        [(ngModel)]="transaction.idUniversign" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_urlUniversign">Url Universign</label>
+                    <input type="text" class="form-control" name="urlUniversign" id="field_urlUniversign"
+                        [(ngModel)]="transaction.urlUniversign" />
                 </div>
 
             </div>

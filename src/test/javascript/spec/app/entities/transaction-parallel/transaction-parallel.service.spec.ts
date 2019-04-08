@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(TransactionParallelService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new TransactionParallel('ID', TansactonsStatus.None, 'AAAAAAA');
+            elemDefault = new TransactionParallel('ID', TansactonsStatus.None, 'AAAAAAA', 'AAAAAAA');
         });
 
         describe('Service methods', async () => {
@@ -56,7 +56,8 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         status: 'BBBBBB',
-                        idUniversign: 'BBBBBB'
+                        idUniversign: 'BBBBBB',
+                        urlUniversign: 'BBBBBB'
                     },
                     elemDefault
                 );
@@ -74,7 +75,8 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         status: 'BBBBBB',
-                        idUniversign: 'BBBBBB'
+                        idUniversign: 'BBBBBB',
+                        urlUniversign: 'BBBBBB'
                     },
                     elemDefault
                 );

@@ -73,8 +73,29 @@ public class SignerResourceIntTest {
     private static final String DEFAULT_FAIL_URL = "AAAAAAAAAA";
     private static final String UPDATED_FAIL_URL = "BBBBBBBBBB";
 
+    private static final String DEFAULT_CALL_BACK_URL = "AAAAAAAAAA";
+    private static final String UPDATED_CALL_BACK_URL = "BBBBBBBBBB";
+
     private static final CertificateType DEFAULT_CERTIFICATE_TYPE = CertificateType.Simple;
     private static final CertificateType UPDATED_CERTIFICATE_TYPE = CertificateType.Certified;
+
+    private static final Integer DEFAULT_RELAUNCH_FREQUENCY = 1;
+    private static final Integer UPDATED_RELAUNCH_FREQUENCY = 2;
+
+    private static final LocalDate DEFAULT_LAST_RELAUNCH = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_LAST_RELAUNCH = LocalDate.now(ZoneId.systemDefault());
+
+    private static final Boolean DEFAULT_SEND_SIGNED_DOCUMENTS_BY_EMAIL = false;
+    private static final Boolean UPDATED_SEND_SIGNED_DOCUMENTS_BY_EMAIL = true;
+
+    private static final String DEFAULT_TEXT_FOR_INVITATION_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_TEXT_FOR_INVITATION_EMAIL = "BBBBBBBBBB";
+
+    private static final String DEFAULT_TEXT_FOR_RELAUNCH_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_TEXT_FOR_RELAUNCH_EMAIL = "BBBBBBBBBB";
+
+    private static final String DEFAULT_TEXT_FOR_SIGNED_DOCUMENTS_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_TEXT_FOR_SIGNED_DOCUMENTS_EMAIL = "BBBBBBBBBB";
 
     @Autowired
     private SignerRepository signerRepository;
@@ -128,7 +149,14 @@ public class SignerResourceIntTest {
             .successURL(DEFAULT_SUCCESS_URL)
             .cancelURL(DEFAULT_CANCEL_URL)
             .failURL(DEFAULT_FAIL_URL)
-            .certificateType(DEFAULT_CERTIFICATE_TYPE);
+            .callBackUrl(DEFAULT_CALL_BACK_URL)
+            .certificateType(DEFAULT_CERTIFICATE_TYPE)
+            .relaunchFrequency(DEFAULT_RELAUNCH_FREQUENCY)
+            .lastRelaunch(DEFAULT_LAST_RELAUNCH)
+            .sendSignedDocumentsByEmail(DEFAULT_SEND_SIGNED_DOCUMENTS_BY_EMAIL)
+            .textForInvitationEmail(DEFAULT_TEXT_FOR_INVITATION_EMAIL)
+            .textForRelaunchEmail(DEFAULT_TEXT_FOR_RELAUNCH_EMAIL)
+            .textForSignedDocumentsEmail(DEFAULT_TEXT_FOR_SIGNED_DOCUMENTS_EMAIL);
         return signer;
     }
 
@@ -162,7 +190,14 @@ public class SignerResourceIntTest {
         assertThat(testSigner.getSuccessURL()).isEqualTo(DEFAULT_SUCCESS_URL);
         assertThat(testSigner.getCancelURL()).isEqualTo(DEFAULT_CANCEL_URL);
         assertThat(testSigner.getFailURL()).isEqualTo(DEFAULT_FAIL_URL);
+        assertThat(testSigner.getCallBackUrl()).isEqualTo(DEFAULT_CALL_BACK_URL);
         assertThat(testSigner.getCertificateType()).isEqualTo(DEFAULT_CERTIFICATE_TYPE);
+        assertThat(testSigner.getRelaunchFrequency()).isEqualTo(DEFAULT_RELAUNCH_FREQUENCY);
+        assertThat(testSigner.getLastRelaunch()).isEqualTo(DEFAULT_LAST_RELAUNCH);
+        assertThat(testSigner.isSendSignedDocumentsByEmail()).isEqualTo(DEFAULT_SEND_SIGNED_DOCUMENTS_BY_EMAIL);
+        assertThat(testSigner.getTextForInvitationEmail()).isEqualTo(DEFAULT_TEXT_FOR_INVITATION_EMAIL);
+        assertThat(testSigner.getTextForRelaunchEmail()).isEqualTo(DEFAULT_TEXT_FOR_RELAUNCH_EMAIL);
+        assertThat(testSigner.getTextForSignedDocumentsEmail()).isEqualTo(DEFAULT_TEXT_FOR_SIGNED_DOCUMENTS_EMAIL);
     }
 
     @Test
@@ -254,7 +289,14 @@ public class SignerResourceIntTest {
             .andExpect(jsonPath("$.[*].successURL").value(hasItem(DEFAULT_SUCCESS_URL.toString())))
             .andExpect(jsonPath("$.[*].cancelURL").value(hasItem(DEFAULT_CANCEL_URL.toString())))
             .andExpect(jsonPath("$.[*].failURL").value(hasItem(DEFAULT_FAIL_URL.toString())))
-            .andExpect(jsonPath("$.[*].certificateType").value(hasItem(DEFAULT_CERTIFICATE_TYPE.toString())));
+            .andExpect(jsonPath("$.[*].callBackUrl").value(hasItem(DEFAULT_CALL_BACK_URL.toString())))
+            .andExpect(jsonPath("$.[*].certificateType").value(hasItem(DEFAULT_CERTIFICATE_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].relaunchFrequency").value(hasItem(DEFAULT_RELAUNCH_FREQUENCY)))
+            .andExpect(jsonPath("$.[*].lastRelaunch").value(hasItem(DEFAULT_LAST_RELAUNCH.toString())))
+            .andExpect(jsonPath("$.[*].sendSignedDocumentsByEmail").value(hasItem(DEFAULT_SEND_SIGNED_DOCUMENTS_BY_EMAIL.booleanValue())))
+            .andExpect(jsonPath("$.[*].textForInvitationEmail").value(hasItem(DEFAULT_TEXT_FOR_INVITATION_EMAIL.toString())))
+            .andExpect(jsonPath("$.[*].textForRelaunchEmail").value(hasItem(DEFAULT_TEXT_FOR_RELAUNCH_EMAIL.toString())))
+            .andExpect(jsonPath("$.[*].textForSignedDocumentsEmail").value(hasItem(DEFAULT_TEXT_FOR_SIGNED_DOCUMENTS_EMAIL.toString())));
     }
     
     @Test
@@ -277,7 +319,14 @@ public class SignerResourceIntTest {
             .andExpect(jsonPath("$.successURL").value(DEFAULT_SUCCESS_URL.toString()))
             .andExpect(jsonPath("$.cancelURL").value(DEFAULT_CANCEL_URL.toString()))
             .andExpect(jsonPath("$.failURL").value(DEFAULT_FAIL_URL.toString()))
-            .andExpect(jsonPath("$.certificateType").value(DEFAULT_CERTIFICATE_TYPE.toString()));
+            .andExpect(jsonPath("$.callBackUrl").value(DEFAULT_CALL_BACK_URL.toString()))
+            .andExpect(jsonPath("$.certificateType").value(DEFAULT_CERTIFICATE_TYPE.toString()))
+            .andExpect(jsonPath("$.relaunchFrequency").value(DEFAULT_RELAUNCH_FREQUENCY))
+            .andExpect(jsonPath("$.lastRelaunch").value(DEFAULT_LAST_RELAUNCH.toString()))
+            .andExpect(jsonPath("$.sendSignedDocumentsByEmail").value(DEFAULT_SEND_SIGNED_DOCUMENTS_BY_EMAIL.booleanValue()))
+            .andExpect(jsonPath("$.textForInvitationEmail").value(DEFAULT_TEXT_FOR_INVITATION_EMAIL.toString()))
+            .andExpect(jsonPath("$.textForRelaunchEmail").value(DEFAULT_TEXT_FOR_RELAUNCH_EMAIL.toString()))
+            .andExpect(jsonPath("$.textForSignedDocumentsEmail").value(DEFAULT_TEXT_FOR_SIGNED_DOCUMENTS_EMAIL.toString()));
     }
 
     @Test
@@ -307,7 +356,14 @@ public class SignerResourceIntTest {
             .successURL(UPDATED_SUCCESS_URL)
             .cancelURL(UPDATED_CANCEL_URL)
             .failURL(UPDATED_FAIL_URL)
-            .certificateType(UPDATED_CERTIFICATE_TYPE);
+            .callBackUrl(UPDATED_CALL_BACK_URL)
+            .certificateType(UPDATED_CERTIFICATE_TYPE)
+            .relaunchFrequency(UPDATED_RELAUNCH_FREQUENCY)
+            .lastRelaunch(UPDATED_LAST_RELAUNCH)
+            .sendSignedDocumentsByEmail(UPDATED_SEND_SIGNED_DOCUMENTS_BY_EMAIL)
+            .textForInvitationEmail(UPDATED_TEXT_FOR_INVITATION_EMAIL)
+            .textForRelaunchEmail(UPDATED_TEXT_FOR_RELAUNCH_EMAIL)
+            .textForSignedDocumentsEmail(UPDATED_TEXT_FOR_SIGNED_DOCUMENTS_EMAIL);
 
         restSignerMockMvc.perform(put("/api/signers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -328,7 +384,14 @@ public class SignerResourceIntTest {
         assertThat(testSigner.getSuccessURL()).isEqualTo(UPDATED_SUCCESS_URL);
         assertThat(testSigner.getCancelURL()).isEqualTo(UPDATED_CANCEL_URL);
         assertThat(testSigner.getFailURL()).isEqualTo(UPDATED_FAIL_URL);
+        assertThat(testSigner.getCallBackUrl()).isEqualTo(UPDATED_CALL_BACK_URL);
         assertThat(testSigner.getCertificateType()).isEqualTo(UPDATED_CERTIFICATE_TYPE);
+        assertThat(testSigner.getRelaunchFrequency()).isEqualTo(UPDATED_RELAUNCH_FREQUENCY);
+        assertThat(testSigner.getLastRelaunch()).isEqualTo(UPDATED_LAST_RELAUNCH);
+        assertThat(testSigner.isSendSignedDocumentsByEmail()).isEqualTo(UPDATED_SEND_SIGNED_DOCUMENTS_BY_EMAIL);
+        assertThat(testSigner.getTextForInvitationEmail()).isEqualTo(UPDATED_TEXT_FOR_INVITATION_EMAIL);
+        assertThat(testSigner.getTextForRelaunchEmail()).isEqualTo(UPDATED_TEXT_FOR_RELAUNCH_EMAIL);
+        assertThat(testSigner.getTextForSignedDocumentsEmail()).isEqualTo(UPDATED_TEXT_FOR_SIGNED_DOCUMENTS_EMAIL);
     }
 
     @Test

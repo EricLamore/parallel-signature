@@ -1,0 +1,67 @@
+<div>
+    <h2 id="page-heading">
+        <span>Documents</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-documents-parallel" [routerLink]="['/documents-parallel/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Documents
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="documents">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Content</span></th>
+            <th><span>File Name</span></th>
+            <th><span>Title</span></th>
+            <th><span>Meta Transaction</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let documents of documents ;trackBy: trackId">
+                <td><a [routerLink]="['/documents-parallel', documents.id, 'view' ]">{{documents.id}}</a></td>
+                <td>
+                    <a *ngIf="documents.content" (click)="openFile(documents.contentContentType, documents.content)">open</a>
+                    <span *ngIf="documents.content">{{documents.contentContentType}}, {{byteSize(documents.content)}}</span>
+                </td>
+                <td>{{documents.fileName}}</td>
+                <td>{{documents.title}}</td>
+                <td>
+                    <div *ngIf="documents.metaTransaction">
+                        <a [routerLink]="['../meta-transaction-parallel', documents.metaTransaction?.id, 'view' ]" >{{documents.metaTransaction?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/documents-parallel', documents.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/documents-parallel', documents.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'documents-parallel', { outlets: { popup: documents.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

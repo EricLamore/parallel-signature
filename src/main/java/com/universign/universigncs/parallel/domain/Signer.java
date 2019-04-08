@@ -60,8 +60,29 @@ public class Signer implements Serializable {
     @Field("fail_url")
     private String failURL;
 
+    @Field("call_back_url")
+    private String callBackUrl;
+
     @Field("certificate_type")
     private CertificateType certificateType;
+
+    @Field("relaunch_frequency")
+    private Integer relaunchFrequency;
+
+    @Field("last_relaunch")
+    private LocalDate lastRelaunch;
+
+    @Field("send_signed_documents_by_email")
+    private Boolean sendSignedDocumentsByEmail;
+
+    @Field("text_for_invitation_email")
+    private String textForInvitationEmail;
+
+    @Field("text_for_relaunch_email")
+    private String textForRelaunchEmail;
+
+    @Field("text_for_signed_documents_email")
+    private String textForSignedDocumentsEmail;
 
     @DBRef
     @Field("transaction")
@@ -211,6 +232,19 @@ public class Signer implements Serializable {
         this.failURL = failURL;
     }
 
+    public String getCallBackUrl() {
+        return callBackUrl;
+    }
+
+    public Signer callBackUrl(String callBackUrl) {
+        this.callBackUrl = callBackUrl;
+        return this;
+    }
+
+    public void setCallBackUrl(String callBackUrl) {
+        this.callBackUrl = callBackUrl;
+    }
+
     public CertificateType getCertificateType() {
         return certificateType;
     }
@@ -222,6 +256,84 @@ public class Signer implements Serializable {
 
     public void setCertificateType(CertificateType certificateType) {
         this.certificateType = certificateType;
+    }
+
+    public Integer getRelaunchFrequency() {
+        return relaunchFrequency;
+    }
+
+    public Signer relaunchFrequency(Integer relaunchFrequency) {
+        this.relaunchFrequency = relaunchFrequency;
+        return this;
+    }
+
+    public void setRelaunchFrequency(Integer relaunchFrequency) {
+        this.relaunchFrequency = relaunchFrequency;
+    }
+
+    public LocalDate getLastRelaunch() {
+        return lastRelaunch;
+    }
+
+    public Signer lastRelaunch(LocalDate lastRelaunch) {
+        this.lastRelaunch = lastRelaunch;
+        return this;
+    }
+
+    public void setLastRelaunch(LocalDate lastRelaunch) {
+        this.lastRelaunch = lastRelaunch;
+    }
+
+    public Boolean isSendSignedDocumentsByEmail() {
+        return sendSignedDocumentsByEmail;
+    }
+
+    public Signer sendSignedDocumentsByEmail(Boolean sendSignedDocumentsByEmail) {
+        this.sendSignedDocumentsByEmail = sendSignedDocumentsByEmail;
+        return this;
+    }
+
+    public void setSendSignedDocumentsByEmail(Boolean sendSignedDocumentsByEmail) {
+        this.sendSignedDocumentsByEmail = sendSignedDocumentsByEmail;
+    }
+
+    public String getTextForInvitationEmail() {
+        return textForInvitationEmail;
+    }
+
+    public Signer textForInvitationEmail(String textForInvitationEmail) {
+        this.textForInvitationEmail = textForInvitationEmail;
+        return this;
+    }
+
+    public void setTextForInvitationEmail(String textForInvitationEmail) {
+        this.textForInvitationEmail = textForInvitationEmail;
+    }
+
+    public String getTextForRelaunchEmail() {
+        return textForRelaunchEmail;
+    }
+
+    public Signer textForRelaunchEmail(String textForRelaunchEmail) {
+        this.textForRelaunchEmail = textForRelaunchEmail;
+        return this;
+    }
+
+    public void setTextForRelaunchEmail(String textForRelaunchEmail) {
+        this.textForRelaunchEmail = textForRelaunchEmail;
+    }
+
+    public String getTextForSignedDocumentsEmail() {
+        return textForSignedDocumentsEmail;
+    }
+
+    public Signer textForSignedDocumentsEmail(String textForSignedDocumentsEmail) {
+        this.textForSignedDocumentsEmail = textForSignedDocumentsEmail;
+        return this;
+    }
+
+    public void setTextForSignedDocumentsEmail(String textForSignedDocumentsEmail) {
+        this.textForSignedDocumentsEmail = textForSignedDocumentsEmail;
     }
 
     public Transaction getTransaction() {
@@ -285,7 +397,14 @@ public class Signer implements Serializable {
             ", successURL='" + getSuccessURL() + "'" +
             ", cancelURL='" + getCancelURL() + "'" +
             ", failURL='" + getFailURL() + "'" +
+            ", callBackUrl='" + getCallBackUrl() + "'" +
             ", certificateType='" + getCertificateType() + "'" +
+            ", relaunchFrequency=" + getRelaunchFrequency() +
+            ", lastRelaunch='" + getLastRelaunch() + "'" +
+            ", sendSignedDocumentsByEmail='" + isSendSignedDocumentsByEmail() + "'" +
+            ", textForInvitationEmail='" + getTextForInvitationEmail() + "'" +
+            ", textForRelaunchEmail='" + getTextForRelaunchEmail() + "'" +
+            ", textForSignedDocumentsEmail='" + getTextForSignedDocumentsEmail() + "'" +
             "}";
     }
 }

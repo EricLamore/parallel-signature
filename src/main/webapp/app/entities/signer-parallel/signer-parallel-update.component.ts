@@ -24,6 +24,7 @@ export class SignerParallelUpdateComponent implements OnInit {
 
     metatransactions: IMetaTransactionParallel[];
     birthDateDp: any;
+    lastRelaunchDp: any;
 
     constructor(
         protected jhiAlertService: JhiAlertService,

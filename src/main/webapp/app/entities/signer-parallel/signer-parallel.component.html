@@ -25,7 +25,14 @@
             <th><span>Success URL</span></th>
             <th><span>Cancel URL</span></th>
             <th><span>Fail URL</span></th>
+            <th><span>Call Back Url</span></th>
             <th><span>Certificate Type</span></th>
+            <th><span>Relaunch Frequency</span></th>
+            <th><span>Last Relaunch</span></th>
+            <th><span>Send Signed Documents By Email</span></th>
+            <th><span>Text For Invitation Email</span></th>
+            <th><span>Text For Relaunch Email</span></th>
+            <th><span>Text For Signed Documents Email</span></th>
             <th><span>Transaction</span></th>
             <th><span>Meta Transaction</span></th>
             <th></th>
@@ -44,7 +51,14 @@
                 <td>{{signer.successURL}}</td>
                 <td>{{signer.cancelURL}}</td>
                 <td>{{signer.failURL}}</td>
+                <td>{{signer.callBackUrl}}</td>
                 <td>{{signer.certificateType}}</td>
+                <td>{{signer.relaunchFrequency}}</td>
+                <td>{{signer.lastRelaunch | date:'mediumDate'}}</td>
+                <td>{{signer.sendSignedDocumentsByEmail}}</td>
+                <td>{{signer.textForInvitationEmail}}</td>
+                <td>{{signer.textForRelaunchEmail}}</td>
+                <td>{{signer.textForSignedDocumentsEmail}}</td>
                 <td>
                     <div *ngIf="signer.transaction">
                         <a [routerLink]="['../transaction-parallel', signer.transaction?.id, 'view' ]" >{{signer.transaction?.id}}</a>

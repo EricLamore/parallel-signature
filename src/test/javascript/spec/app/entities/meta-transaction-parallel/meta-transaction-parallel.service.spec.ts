@@ -21,7 +21,18 @@ describe('Service Tests', () => {
             service = injector.get(MetaTransactionParallelService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new MetaTransactionParallel('ID', MetaTansactonsStatus.NONE, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+            elemDefault = new MetaTransactionParallel(
+                'ID',
+                MetaTansactonsStatus.NONE,
+                'AAAAAAA',
+                'AAAAAAA',
+                'AAAAAAA',
+                false,
+                false,
+                'image/png',
+                'AAAAAAA',
+                0
+            );
         });
 
         describe('Service methods', async () => {
@@ -58,7 +69,11 @@ describe('Service Tests', () => {
                         status: 'BBBBBB',
                         profile: 'BBBBBB',
                         owner: 'BBBBBB',
-                        name: 'BBBBBB'
+                        name: 'BBBBBB',
+                        displayDateTimeOnSignatureField: true,
+                        geometreSignatureRequired: true,
+                        logoForGeometreSignatureField: 'BBBBBB',
+                        metatransactionDuration: 1
                     },
                     elemDefault
                 );
@@ -78,7 +93,11 @@ describe('Service Tests', () => {
                         status: 'BBBBBB',
                         profile: 'BBBBBB',
                         owner: 'BBBBBB',
-                        name: 'BBBBBB'
+                        name: 'BBBBBB',
+                        displayDateTimeOnSignatureField: true,
+                        geometreSignatureRequired: true,
+                        logoForGeometreSignatureField: 'BBBBBB',
+                        metatransactionDuration: 1
                     },
                     elemDefault
                 );

@@ -1,4 +1,4 @@
-import { IDocumentParallel } from 'app/shared/model/document-parallel.model';
+import { IDocumentsParallel } from 'app/shared/model/documents-parallel.model';
 
 export interface ISignatureFieldParallel {
     id?: string;
@@ -8,7 +8,7 @@ export interface ISignatureFieldParallel {
     imageContentType?: string;
     image?: any;
     signerId?: number;
-    metaTransaction?: IDocumentParallel;
+    metaTransaction?: IDocumentsParallel;
 }
 
 export class SignatureFieldParallel implements ISignatureFieldParallel {
@@ -20,6 +20,6 @@ export class SignatureFieldParallel implements ISignatureFieldParallel {
         public imageContentType?: string,
         public image?: any,
         public signerId?: number,
-        public metaTransaction?: IDocumentParallel
+        public metaTransaction?: IDocumentsParallel
     ) {}
 }

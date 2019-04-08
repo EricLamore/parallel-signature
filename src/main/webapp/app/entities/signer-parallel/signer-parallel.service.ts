@@ -51,7 +51,8 @@ export class SignerParallelService {
 
     protected convertDateFromClient(signer: ISignerParallel): ISignerParallel {
         const copy: ISignerParallel = Object.assign({}, signer, {
-            birthDate: signer.birthDate != null && signer.birthDate.isValid() ? signer.birthDate.format(DATE_FORMAT) : null
+            birthDate: signer.birthDate != null && signer.birthDate.isValid() ? signer.birthDate.format(DATE_FORMAT) : null,
+            lastRelaunch: signer.lastRelaunch != null && signer.lastRelaunch.isValid() ? signer.lastRelaunch.format(DATE_FORMAT) : null
         });
         return copy;
     }
@@ -59,6 +60,7 @@ export class SignerParallelService {
     protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
         if (res.body) {
             res.body.birthDate = res.body.birthDate != null ? moment(res.body.birthDate) : null;
+            res.body.lastRelaunch = res.body.lastRelaunch != null ? moment(res.body.lastRelaunch) : null;
         }
         return res;
     }
@@ -67,6 +69,7 @@ export class SignerParallelService {
         if (res.body) {
             res.body.forEach((signer: ISignerParallel) => {
                 signer.birthDate = signer.birthDate != null ? moment(signer.birthDate) : null;
+                signer.lastRelaunch = signer.lastRelaunch != null ? moment(signer.lastRelaunch) : null;
             });
         }
         return res;

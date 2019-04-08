@@ -6,7 +6,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
-import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -27,9 +26,11 @@ public class Transaction implements Serializable {
     @Field("status")
     private TansactonsStatus status;
 
-    @NotNull
     @Field("id_universign")
     private String idUniversign;
+
+    @Field("url_universign")
+    private String urlUniversign;
 
     @DBRef
     @Field("signer")
@@ -69,6 +70,19 @@ public class Transaction implements Serializable {
 
     public void setIdUniversign(String idUniversign) {
         this.idUniversign = idUniversign;
+    }
+
+    public String getUrlUniversign() {
+        return urlUniversign;
+    }
+
+    public Transaction urlUniversign(String urlUniversign) {
+        this.urlUniversign = urlUniversign;
+        return this;
+    }
+
+    public void setUrlUniversign(String urlUniversign) {
+        this.urlUniversign = urlUniversign;
     }
 
     public Signer getSigner() {
@@ -111,6 +125,7 @@ public class Transaction implements Serializable {
             "id=" + getId() +
             ", status='" + getStatus() + "'" +
             ", idUniversign='" + getIdUniversign() + "'" +
+            ", urlUniversign='" + getUrlUniversign() + "'" +
             "}";
     }
 }

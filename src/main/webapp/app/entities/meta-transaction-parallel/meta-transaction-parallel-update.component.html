@@ -40,6 +40,39 @@
                     <input type="text" class="form-control" name="name" id="field_name"
                         [(ngModel)]="metaTransaction.name" />
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_displayDateTimeOnSignatureField">Display Date Time On Signature Field</label>
+                    <input type="checkbox" class="form-control" name="displayDateTimeOnSignatureField" id="field_displayDateTimeOnSignatureField"
+                        [(ngModel)]="metaTransaction.displayDateTimeOnSignatureField" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_geometreSignatureRequired">Geometre Signature Required</label>
+                    <input type="checkbox" class="form-control" name="geometreSignatureRequired" id="field_geometreSignatureRequired"
+                        [(ngModel)]="metaTransaction.geometreSignatureRequired" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_logoForGeometreSignatureField">Logo For Geometre Signature Field</label>
+                    <div>
+                        <div *ngIf="metaTransaction.logoForGeometreSignatureField" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(metaTransaction.logoForGeometreSignatureFieldContentType, metaTransaction.logoForGeometreSignatureField)">open</a><br>
+                            <span class="pull-left">{{metaTransaction.logoForGeometreSignatureFieldContentType}}, {{byteSize(metaTransaction.logoForGeometreSignatureField)}}</span>
+                            <button type="button" (click)="metaTransaction.logoForGeometreSignatureField=null;metaTransaction.logoForGeometreSignatureFieldContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_logoForGeometreSignatureField" (change)="setFileData($event, metaTransaction, 'logoForGeometreSignatureField', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="logoForGeometreSignatureField" id="field_logoForGeometreSignatureField"
+                        [(ngModel)]="metaTransaction.logoForGeometreSignatureField" />
+                    <input type="hidden" class="form-control" name="logoForGeometreSignatureFieldContentType" id="field_logoForGeometreSignatureFieldContentType"
+                        [(ngModel)]="metaTransaction.logoForGeometreSignatureFieldContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_metatransactionDuration">Metatransaction Duration</label>
+                    <input type="number" class="form-control" name="metatransactionDuration" id="field_metatransactionDuration"
+                        [(ngModel)]="metaTransaction.metatransactionDuration" />
+                </div>
 
             </div>
             <div>
