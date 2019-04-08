@@ -92,7 +92,7 @@
                     <label class="form-control-label" for="field_metaTransaction">Meta Transaction</label>
                     <select class="form-control" id="field_metaTransaction" name="metaTransaction" [(ngModel)]="signatureField.metaTransaction" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="documentOption.id === signatureField.metaTransaction?.id ? signatureField.metaTransaction : documentOption" *ngFor="let documentOption of documents; trackBy: trackDocumentById">{{documentOption.id}}</option>
+                        <option [ngValue]="documentsOption.id === signatureField.metaTransaction?.id ? signatureField.metaTransaction : documentsOption" *ngFor="let documentsOption of documents; trackBy: trackDocumentsById">{{documentsOption.id}}</option>
                     </select>
                 </div>
             </div>

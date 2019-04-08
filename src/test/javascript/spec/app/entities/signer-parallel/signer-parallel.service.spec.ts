@@ -37,7 +37,14 @@ describe('Service Tests', () => {
                 'AAAAAAA',
                 'AAAAAAA',
                 'AAAAAAA',
-                CertificateType.Simple
+                'AAAAAAA',
+                CertificateType.Simple,
+                0,
+                currentDate,
+                false,
+                'AAAAAAA',
+                'AAAAAAA',
+                'AAAAAAA'
             );
         });
 
@@ -45,7 +52,8 @@ describe('Service Tests', () => {
             it('should find an element', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        birthDate: currentDate.format(DATE_FORMAT)
+                        birthDate: currentDate.format(DATE_FORMAT),
+                        lastRelaunch: currentDate.format(DATE_FORMAT)
                     },
                     elemDefault
                 );
@@ -62,13 +70,15 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         id: 'ID',
-                        birthDate: currentDate.format(DATE_FORMAT)
+                        birthDate: currentDate.format(DATE_FORMAT),
+                        lastRelaunch: currentDate.format(DATE_FORMAT)
                     },
                     elemDefault
                 );
                 const expected = Object.assign(
                     {
-                        birthDate: currentDate
+                        birthDate: currentDate,
+                        lastRelaunch: currentDate
                     },
                     returnedFromService
                 );
@@ -93,14 +103,22 @@ describe('Service Tests', () => {
                         successURL: 'BBBBBB',
                         cancelURL: 'BBBBBB',
                         failURL: 'BBBBBB',
-                        certificateType: 'BBBBBB'
+                        callBackUrl: 'BBBBBB',
+                        certificateType: 'BBBBBB',
+                        relaunchFrequency: 1,
+                        lastRelaunch: currentDate.format(DATE_FORMAT),
+                        sendSignedDocumentsByEmail: true,
+                        textForInvitationEmail: 'BBBBBB',
+                        textForRelaunchEmail: 'BBBBBB',
+                        textForSignedDocumentsEmail: 'BBBBBB'
                     },
                     elemDefault
                 );
 
                 const expected = Object.assign(
                     {
-                        birthDate: currentDate
+                        birthDate: currentDate,
+                        lastRelaunch: currentDate
                     },
                     returnedFromService
                 );
@@ -125,13 +143,21 @@ describe('Service Tests', () => {
                         successURL: 'BBBBBB',
                         cancelURL: 'BBBBBB',
                         failURL: 'BBBBBB',
-                        certificateType: 'BBBBBB'
+                        callBackUrl: 'BBBBBB',
+                        certificateType: 'BBBBBB',
+                        relaunchFrequency: 1,
+                        lastRelaunch: currentDate.format(DATE_FORMAT),
+                        sendSignedDocumentsByEmail: true,
+                        textForInvitationEmail: 'BBBBBB',
+                        textForRelaunchEmail: 'BBBBBB',
+                        textForSignedDocumentsEmail: 'BBBBBB'
                     },
                     elemDefault
                 );
                 const expected = Object.assign(
                     {
-                        birthDate: currentDate
+                        birthDate: currentDate,
+                        lastRelaunch: currentDate
                     },
                     returnedFromService
                 );

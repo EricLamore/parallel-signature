@@ -6,8 +6,8 @@ import { filter, map } from 'rxjs/operators';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { ISignatureFieldParallel } from 'app/shared/model/signature-field-parallel.model';
 import { SignatureFieldParallelService } from './signature-field-parallel.service';
-import { IDocumentParallel } from 'app/shared/model/document-parallel.model';
-import { DocumentParallelService } from 'app/entities/document-parallel';
+import { IDocumentsParallel } from 'app/shared/model/documents-parallel.model';
+import { DocumentsParallelService } from 'app/entities/documents-parallel';
 
 @Component({
     selector: 'jhi-signature-field-parallel-update',
@@ -17,13 +17,13 @@ export class SignatureFieldParallelUpdateComponent implements OnInit {
     signatureField: ISignatureFieldParallel;
     isSaving: boolean;
 
-    documents: IDocumentParallel[];
+    documents: IDocumentsParallel[];
 
     constructor(
         protected dataUtils: JhiDataUtils,
         protected jhiAlertService: JhiAlertService,
         protected signatureFieldService: SignatureFieldParallelService,
-        protected documentService: DocumentParallelService,
+        protected documentsService: DocumentsParallelService,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -32,13 +32,13 @@ export class SignatureFieldParallelUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ signatureField }) => {
             this.signatureField = signatureField;
         });
-        this.documentService
+        this.documentsService
             .query()
             .pipe(
-                filter((mayBeOk: HttpResponse<IDocumentParallel[]>) => mayBeOk.ok),
-                map((response: HttpResponse<IDocumentParallel[]>) => response.body)
+                filter((mayBeOk: HttpResponse<IDocumentsParallel[]>) => mayBeOk.ok),
+                map((response: HttpResponse<IDocumentsParallel[]>) => response.body)
             )
-            .subscribe((res: IDocumentParallel[]) => (this.documents = res), (res: HttpErrorResponse) => this.onError(res.message));
+            .subscribe((res: IDocumentsParallel[]) => (this.documents = res), (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     byteSize(field) {
@@ -86,7 +86,7 @@ export class SignatureFieldParallelUpdateComponent implements OnInit {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 
-    trackDocumentById(index: number, item: IDocumentParallel) {
+    trackDocumentsById(index: number, item: IDocumentsParallel) {
         return item.id;
     }
 }

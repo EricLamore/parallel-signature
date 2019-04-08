@@ -4,14 +4,15 @@
         {
             "fieldName": "status",
             "fieldType": "TansactonsStatus",
-            "fieldValues": "None,Ready,Expired,Canceled,Failed,Completed"
+            "fieldValues": "None,Ready,Expired,Canceled,Failed,Completed,Outdated"
         },
         {
             "fieldName": "idUniversign",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "urlUniversign",
+            "fieldType": "String"
         }
     ],
     "relationships": [

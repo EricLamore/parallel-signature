@@ -39,9 +39,24 @@ public class MetaTransaction implements Serializable {
     @Field("name")
     private String name;
 
+    @Field("display_date_time_on_signature_field")
+    private Boolean displayDateTimeOnSignatureField;
+
+    @Field("geometre_signature_required")
+    private Boolean geometreSignatureRequired;
+
+    @Field("logo_for_geometre_signature_field")
+    private byte[] logoForGeometreSignatureField;
+
+    @Field("logo_for_geometre_signature_field_content_type")
+    private String logoForGeometreSignatureFieldContentType;
+
+    @Field("metatransaction_duration")
+    private Integer metatransactionDuration;
+
     @DBRef
     @Field("documents")
-    private Set<Document> documents = new HashSet<>();
+    private Set<Documents> documents = new HashSet<>();
     @DBRef
     @Field("signers")
     private Set<Signer> signers = new HashSet<>();
@@ -106,28 +121,93 @@ public class MetaTransaction implements Serializable {
         this.name = name;
     }
 
-    public Set<Document> getDocuments() {
+    public Boolean isDisplayDateTimeOnSignatureField() {
+        return displayDateTimeOnSignatureField;
+    }
+
+    public MetaTransaction displayDateTimeOnSignatureField(Boolean displayDateTimeOnSignatureField) {
+        this.displayDateTimeOnSignatureField = displayDateTimeOnSignatureField;
+        return this;
+    }
+
+    public void setDisplayDateTimeOnSignatureField(Boolean displayDateTimeOnSignatureField) {
+        this.displayDateTimeOnSignatureField = displayDateTimeOnSignatureField;
+    }
+
+    public Boolean isGeometreSignatureRequired() {
+        return geometreSignatureRequired;
+    }
+
+    public MetaTransaction geometreSignatureRequired(Boolean geometreSignatureRequired) {
+        this.geometreSignatureRequired = geometreSignatureRequired;
+        return this;
+    }
+
+    public void setGeometreSignatureRequired(Boolean geometreSignatureRequired) {
+        this.geometreSignatureRequired = geometreSignatureRequired;
+    }
+
+    public byte[] getLogoForGeometreSignatureField() {
+        return logoForGeometreSignatureField;
+    }
+
+    public MetaTransaction logoForGeometreSignatureField(byte[] logoForGeometreSignatureField) {
+        this.logoForGeometreSignatureField = logoForGeometreSignatureField;
+        return this;
+    }
+
+    public void setLogoForGeometreSignatureField(byte[] logoForGeometreSignatureField) {
+        this.logoForGeometreSignatureField = logoForGeometreSignatureField;
+    }
+
+    public String getLogoForGeometreSignatureFieldContentType() {
+        return logoForGeometreSignatureFieldContentType;
+    }
+
+    public MetaTransaction logoForGeometreSignatureFieldContentType(String logoForGeometreSignatureFieldContentType) {
+        this.logoForGeometreSignatureFieldContentType = logoForGeometreSignatureFieldContentType;
+        return this;
+    }
+
+    public void setLogoForGeometreSignatureFieldContentType(String logoForGeometreSignatureFieldContentType) {
+        this.logoForGeometreSignatureFieldContentType = logoForGeometreSignatureFieldContentType;
+    }
+
+    public Integer getMetatransactionDuration() {
+        return metatransactionDuration;
+    }
+
+    public MetaTransaction metatransactionDuration(Integer metatransactionDuration) {
+        this.metatransactionDuration = metatransactionDuration;
+        return this;
+    }
+
+    public void setMetatransactionDuration(Integer metatransactionDuration) {
+        this.metatransactionDuration = metatransactionDuration;
+    }
+
+    public Set<Documents> getDocuments() {
         return documents;
     }
 
-    public MetaTransaction documents(Set<Document> documents) {
+    public MetaTransaction documents(Set<Documents> documents) {
         this.documents = documents;
         return this;
     }
 
-    public MetaTransaction addDocuments(Document document) {
-        this.documents.add(document);
-        document.setMetaTransaction(this);
+    public MetaTransaction addDocuments(Documents documents) {
+        this.documents.add(documents);
+        documents.setMetaTransaction(this);
         return this;
     }
 
-    public MetaTransaction removeDocuments(Document document) {
-        this.documents.remove(document);
-        document.setMetaTransaction(null);
+    public MetaTransaction removeDocuments(Documents documents) {
+        this.documents.remove(documents);
+        documents.setMetaTransaction(null);
         return this;
     }
 
-    public void setDocuments(Set<Document> documents) {
+    public void setDocuments(Set<Documents> documents) {
         this.documents = documents;
     }
 
@@ -185,6 +265,11 @@ public class MetaTransaction implements Serializable {
             ", profile='" + getProfile() + "'" +
             ", owner='" + getOwner() + "'" +
             ", name='" + getName() + "'" +
+            ", displayDateTimeOnSignatureField='" + isDisplayDateTimeOnSignatureField() + "'" +
+            ", geometreSignatureRequired='" + isGeometreSignatureRequired() + "'" +
+            ", logoForGeometreSignatureField='" + getLogoForGeometreSignatureField() + "'" +
+            ", logoForGeometreSignatureFieldContentType='" + getLogoForGeometreSignatureFieldContentType() + "'" +
+            ", metatransactionDuration=" + getMetatransactionDuration() +
             "}";
     }
 }

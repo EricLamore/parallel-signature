@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="documents">
+            <h2><span>Documents</span> {{documents.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Content</span></dt>
+                <dd>
+                    <div *ngIf="documents.content">
+                        <a (click)="openFile(documents.contentContentType, documents.content)">open</a>
+                        {{documents.contentContentType}}, {{byteSize(documents.content)}}
+                    </div>
+                </dd>
+                <dt><span>File Name</span></dt>
+                <dd>
+                    <span>{{documents.fileName}}</span>
+                </dd>
+                <dt><span>Title</span></dt>
+                <dd>
+                    <span>{{documents.title}}</span>
+                </dd>
+                <dt><span>Meta Transaction</span></dt>
+                <dd>
+                    <div *ngIf="documents.metaTransaction">
+                        <a [routerLink]="['/meta-transaction-parallel', documents.metaTransaction?.id, 'view']">{{documents.metaTransaction?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/documents-parallel', documents.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

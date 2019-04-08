@@ -1,0 +1,49 @@
+{
+    "name": "Documents",
+    "fields": [
+        {
+            "fieldName": "content",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fileName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "signatureField",
+            "otherEntityRelationshipName": "metaTransaction",
+            "relationshipName": "documents"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "metaTransaction",
+            "otherEntityRelationshipName": "documents",
+            "relationshipName": "metaTransaction",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190408081110",
+    "entityTableName": "documents",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "parallel"
+}

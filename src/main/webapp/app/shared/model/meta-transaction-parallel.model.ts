@@ -1,4 +1,4 @@
-import { IDocumentParallel } from 'app/shared/model/document-parallel.model';
+import { IDocumentsParallel } from 'app/shared/model/documents-parallel.model';
 import { ISignerParallel } from 'app/shared/model/signer-parallel.model';
 
 export const enum MetaTansactonsStatus {
@@ -15,7 +15,12 @@ export interface IMetaTransactionParallel {
     profile?: string;
     owner?: string;
     name?: string;
-    documents?: IDocumentParallel[];
+    displayDateTimeOnSignatureField?: boolean;
+    geometreSignatureRequired?: boolean;
+    logoForGeometreSignatureFieldContentType?: string;
+    logoForGeometreSignatureField?: any;
+    metatransactionDuration?: number;
+    documents?: IDocumentsParallel[];
     signers?: ISignerParallel[];
 }
 
@@ -26,7 +31,15 @@ export class MetaTransactionParallel implements IMetaTransactionParallel {
         public profile?: string,
         public owner?: string,
         public name?: string,
-        public documents?: IDocumentParallel[],
+        public displayDateTimeOnSignatureField?: boolean,
+        public geometreSignatureRequired?: boolean,
+        public logoForGeometreSignatureFieldContentType?: string,
+        public logoForGeometreSignatureField?: any,
+        public metatransactionDuration?: number,
+        public documents?: IDocumentsParallel[],
         public signers?: ISignerParallel[]
-    ) {}
+    ) {
+        this.displayDateTimeOnSignatureField = this.displayDateTimeOnSignatureField || false;
+        this.geometreSignatureRequired = this.geometreSignatureRequired || false;
+    }
 }

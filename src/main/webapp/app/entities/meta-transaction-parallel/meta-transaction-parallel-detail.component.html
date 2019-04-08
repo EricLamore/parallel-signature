@@ -21,6 +21,25 @@
                 <dd>
                     <span>{{metaTransaction.name}}</span>
                 </dd>
+                <dt><span>Display Date Time On Signature Field</span></dt>
+                <dd>
+                    <span>{{metaTransaction.displayDateTimeOnSignatureField}}</span>
+                </dd>
+                <dt><span>Geometre Signature Required</span></dt>
+                <dd>
+                    <span>{{metaTransaction.geometreSignatureRequired}}</span>
+                </dd>
+                <dt><span>Logo For Geometre Signature Field</span></dt>
+                <dd>
+                    <div *ngIf="metaTransaction.logoForGeometreSignatureField">
+                        <a (click)="openFile(metaTransaction.logoForGeometreSignatureFieldContentType, metaTransaction.logoForGeometreSignatureField)">open</a>
+                        {{metaTransaction.logoForGeometreSignatureFieldContentType}}, {{byteSize(metaTransaction.logoForGeometreSignatureField)}}
+                    </div>
+                </dd>
+                <dt><span>Metatransaction Duration</span></dt>
+                <dd>
+                    <span>{{metaTransaction.metatransactionDuration}}</span>
+                </dd>
             </dl>
 
             <button type="submit"

@@ -19,6 +19,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.util.Base64Utils;
 import org.springframework.validation.Validator;
 
 import java.util.List;
@@ -51,6 +52,20 @@ public class MetaTransactionResourceIntTest {
 
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
+
+    private static final Boolean DEFAULT_DISPLAY_DATE_TIME_ON_SIGNATURE_FIELD = false;
+    private static final Boolean UPDATED_DISPLAY_DATE_TIME_ON_SIGNATURE_FIELD = true;
+
+    private static final Boolean DEFAULT_GEOMETRE_SIGNATURE_REQUIRED = false;
+    private static final Boolean UPDATED_GEOMETRE_SIGNATURE_REQUIRED = true;
+
+    private static final byte[] DEFAULT_LOGO_FOR_GEOMETRE_SIGNATURE_FIELD = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_LOGO_FOR_GEOMETRE_SIGNATURE_FIELD = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_LOGO_FOR_GEOMETRE_SIGNATURE_FIELD_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_LOGO_FOR_GEOMETRE_SIGNATURE_FIELD_CONTENT_TYPE = "image/png";
+
+    private static final Integer DEFAULT_METATRANSACTION_DURATION = 1;
+    private static final Integer UPDATED_METATRANSACTION_DURATION = 2;
 
     @Autowired
     private MetaTransactionRepository metaTransactionRepository;
@@ -97,7 +112,12 @@ public class MetaTransactionResourceIntTest {
             .status(DEFAULT_STATUS)
             .profile(DEFAULT_PROFILE)
             .owner(DEFAULT_OWNER)
-            .name(DEFAULT_NAME);
+            .name(DEFAULT_NAME)
+            .displayDateTimeOnSignatureField(DEFAULT_DISPLAY_DATE_TIME_ON_SIGNATURE_FIELD)
+            .geometreSignatureRequired(DEFAULT_GEOMETRE_SIGNATURE_REQUIRED)
+            .logoForGeometreSignatureField(DEFAULT_LOGO_FOR_GEOMETRE_SIGNATURE_FIELD)
+            .logoForGeometreSignatureFieldContentType(DEFAULT_LOGO_FOR_GEOMETRE_SIGNATURE_FIELD_CONTENT_TYPE)
+            .metatransactionDuration(DEFAULT_METATRANSACTION_DURATION);
         return metaTransaction;
     }
 
@@ -125,6 +145,11 @@ public class MetaTransactionResourceIntTest {
         assertThat(testMetaTransaction.getProfile()).isEqualTo(DEFAULT_PROFILE);
         assertThat(testMetaTransaction.getOwner()).isEqualTo(DEFAULT_OWNER);
         assertThat(testMetaTransaction.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testMetaTransaction.isDisplayDateTimeOnSignatureField()).isEqualTo(DEFAULT_DISPLAY_DATE_TIME_ON_SIGNATURE_FIELD);
+        assertThat(testMetaTransaction.isGeometreSignatureRequired()).isEqualTo(DEFAULT_GEOMETRE_SIGNATURE_REQUIRED);
+        assertThat(testMetaTransaction.getLogoForGeometreSignatureField()).isEqualTo(DEFAULT_LOGO_FOR_GEOMETRE_SIGNATURE_FIELD);
+        assertThat(testMetaTransaction.getLogoForGeometreSignatureFieldContentType()).isEqualTo(DEFAULT_LOGO_FOR_GEOMETRE_SIGNATURE_FIELD_CONTENT_TYPE);
+        assertThat(testMetaTransaction.getMetatransactionDuration()).isEqualTo(DEFAULT_METATRANSACTION_DURATION);
     }
 
     @Test
@@ -175,7 +200,12 @@ public class MetaTransactionResourceIntTest {
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].profile").value(hasItem(DEFAULT_PROFILE.toString())))
             .andExpect(jsonPath("$.[*].owner").value(hasItem(DEFAULT_OWNER.toString())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())));
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].displayDateTimeOnSignatureField").value(hasItem(DEFAULT_DISPLAY_DATE_TIME_ON_SIGNATURE_FIELD.booleanValue())))
+            .andExpect(jsonPath("$.[*].geometreSignatureRequired").value(hasItem(DEFAULT_GEOMETRE_SIGNATURE_REQUIRED.booleanValue())))
+            .andExpect(jsonPath("$.[*].logoForGeometreSignatureFieldContentType").value(hasItem(DEFAULT_LOGO_FOR_GEOMETRE_SIGNATURE_FIELD_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].logoForGeometreSignatureField").value(hasItem(Base64Utils.encodeToString(DEFAULT_LOGO_FOR_GEOMETRE_SIGNATURE_FIELD))))
+            .andExpect(jsonPath("$.[*].metatransactionDuration").value(hasItem(DEFAULT_METATRANSACTION_DURATION)));
     }
     
     @Test
@@ -191,7 +221,12 @@ public class MetaTransactionResourceIntTest {
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
             .andExpect(jsonPath("$.profile").value(DEFAULT_PROFILE.toString()))
             .andExpect(jsonPath("$.owner").value(DEFAULT_OWNER.toString()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()));
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.displayDateTimeOnSignatureField").value(DEFAULT_DISPLAY_DATE_TIME_ON_SIGNATURE_FIELD.booleanValue()))
+            .andExpect(jsonPath("$.geometreSignatureRequired").value(DEFAULT_GEOMETRE_SIGNATURE_REQUIRED.booleanValue()))
+            .andExpect(jsonPath("$.logoForGeometreSignatureFieldContentType").value(DEFAULT_LOGO_FOR_GEOMETRE_SIGNATURE_FIELD_CONTENT_TYPE))
+            .andExpect(jsonPath("$.logoForGeometreSignatureField").value(Base64Utils.encodeToString(DEFAULT_LOGO_FOR_GEOMETRE_SIGNATURE_FIELD)))
+            .andExpect(jsonPath("$.metatransactionDuration").value(DEFAULT_METATRANSACTION_DURATION));
     }
 
     @Test
@@ -214,7 +249,12 @@ public class MetaTransactionResourceIntTest {
             .status(UPDATED_STATUS)
             .profile(UPDATED_PROFILE)
             .owner(UPDATED_OWNER)
-            .name(UPDATED_NAME);
+            .name(UPDATED_NAME)
+            .displayDateTimeOnSignatureField(UPDATED_DISPLAY_DATE_TIME_ON_SIGNATURE_FIELD)
+            .geometreSignatureRequired(UPDATED_GEOMETRE_SIGNATURE_REQUIRED)
+            .logoForGeometreSignatureField(UPDATED_LOGO_FOR_GEOMETRE_SIGNATURE_FIELD)
+            .logoForGeometreSignatureFieldContentType(UPDATED_LOGO_FOR_GEOMETRE_SIGNATURE_FIELD_CONTENT_TYPE)
+            .metatransactionDuration(UPDATED_METATRANSACTION_DURATION);
 
         restMetaTransactionMockMvc.perform(put("/api/meta-transactions")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -229,6 +269,11 @@ public class MetaTransactionResourceIntTest {
         assertThat(testMetaTransaction.getProfile()).isEqualTo(UPDATED_PROFILE);
         assertThat(testMetaTransaction.getOwner()).isEqualTo(UPDATED_OWNER);
         assertThat(testMetaTransaction.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testMetaTransaction.isDisplayDateTimeOnSignatureField()).isEqualTo(UPDATED_DISPLAY_DATE_TIME_ON_SIGNATURE_FIELD);
+        assertThat(testMetaTransaction.isGeometreSignatureRequired()).isEqualTo(UPDATED_GEOMETRE_SIGNATURE_REQUIRED);
+        assertThat(testMetaTransaction.getLogoForGeometreSignatureField()).isEqualTo(UPDATED_LOGO_FOR_GEOMETRE_SIGNATURE_FIELD);
+        assertThat(testMetaTransaction.getLogoForGeometreSignatureFieldContentType()).isEqualTo(UPDATED_LOGO_FOR_GEOMETRE_SIGNATURE_FIELD_CONTENT_TYPE);
+        assertThat(testMetaTransaction.getMetatransactionDuration()).isEqualTo(UPDATED_METATRANSACTION_DURATION);
     }
 
     @Test

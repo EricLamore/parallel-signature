@@ -3,9 +3,13 @@ entity MetaTransaction {
     profile String,
     owner String required,
     name String,
+    displayDateTimeOnSignatureField Boolean,
+    geometreSignatureRequired Boolean,
+    logoForGeometreSignatureField Blob,
+    metatransactionDuration Integer,
 }
 
-entity Document {
+entity Documents {
 	content Blob required,
     fileName String required,
     title String,
@@ -30,12 +34,20 @@ entity Signer {
     successURL String,
     cancelURL String,
     failURL String,
-    certificateType CertificateType
+    callBackUrl String,
+    certificateType CertificateType,
+    relaunchFrequency Integer,
+    lastRelaunch LocalDate,
+    sendSignedDocumentsByEmail Boolean,
+    textForInvitationEmail String,
+    textForRelaunchEmail String,
+    textForSignedDocumentsEmail String,
 }
 
 entity Transaction {
     status TansactonsStatus,
-    idUniversign String required,
+    idUniversign String,
+    urlUniversign String,
 }
 
 enum CertificateType {
@@ -43,7 +55,13 @@ enum CertificateType {
 }
 
 enum TansactonsStatus {
- None, Ready, Expired, Canceled, Failed, Completed
+ None, 
+ Ready, 
+ Expired, 
+ Canceled, 
+ Failed, 
+ Completed, 
+ Outdated
 }
 
 enum MetaTansactonsStatus {
@@ -55,7 +73,7 @@ enum SignerStatus {
 }
 
 relationship OneToMany {
-  MetaTransaction{documents} to Document{metaTransaction}
+  MetaTransaction{documents} to Documents{metaTransaction}
 }
 
 relationship OneToMany {
@@ -63,7 +81,7 @@ relationship OneToMany {
 }
 
 relationship OneToMany {
-  Document{documents} to SignatureField{metaTransaction}
+  Documents{documents} to SignatureField{metaTransaction}
 }
 
 relationship OneToOne {

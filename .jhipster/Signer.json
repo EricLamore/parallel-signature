@@ -52,9 +52,37 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "callBackUrl",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "certificateType",
             "fieldType": "CertificateType",
             "fieldValues": "Simple,Certified,Advanced"
+        },
+        {
+            "fieldName": "relaunchFrequency",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "lastRelaunch",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "sendSignedDocumentsByEmail",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "textForInvitationEmail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "textForRelaunchEmail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "textForSignedDocumentsEmail",
+            "fieldType": "String"
         }
     ],
     "relationships": [

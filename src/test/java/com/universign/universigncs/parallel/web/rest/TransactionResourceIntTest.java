@@ -46,6 +46,9 @@ public class TransactionResourceIntTest {
     private static final String DEFAULT_ID_UNIVERSIGN = "AAAAAAAAAA";
     private static final String UPDATED_ID_UNIVERSIGN = "BBBBBBBBBB";
 
+    private static final String DEFAULT_URL_UNIVERSIGN = "AAAAAAAAAA";
+    private static final String UPDATED_URL_UNIVERSIGN = "BBBBBBBBBB";
+
     @Autowired
     private TransactionRepository transactionRepository;
 
@@ -89,7 +92,8 @@ public class TransactionResourceIntTest {
     public static Transaction createEntity() {
         Transaction transaction = new Transaction()
             .status(DEFAULT_STATUS)
-            .idUniversign(DEFAULT_ID_UNIVERSIGN);
+            .idUniversign(DEFAULT_ID_UNIVERSIGN)
+            .urlUniversign(DEFAULT_URL_UNIVERSIGN);
         return transaction;
     }
 
@@ -115,6 +119,7 @@ public class TransactionResourceIntTest {
         Transaction testTransaction = transactionList.get(transactionList.size() - 1);
         assertThat(testTransaction.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testTransaction.getIdUniversign()).isEqualTo(DEFAULT_ID_UNIVERSIGN);
+        assertThat(testTransaction.getUrlUniversign()).isEqualTo(DEFAULT_URL_UNIVERSIGN);
     }
 
     @Test
@@ -136,23 +141,6 @@ public class TransactionResourceIntTest {
     }
 
     @Test
-    public void checkIdUniversignIsRequired() throws Exception {
-        int databaseSizeBeforeTest = transactionRepository.findAll().size();
-        // set the field null
-        transaction.setIdUniversign(null);
-
-        // Create the Transaction, which fails.
-
-        restTransactionMockMvc.perform(post("/api/transactions")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(transaction)))
-            .andExpect(status().isBadRequest());
-
-        List<Transaction> transactionList = transactionRepository.findAll();
-        assertThat(transactionList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
     public void getAllTransactions() throws Exception {
         // Initialize the database
         transactionRepository.save(transaction);
@@ -163,7 +151,8 @@ public class TransactionResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(transaction.getId())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
-            .andExpect(jsonPath("$.[*].idUniversign").value(hasItem(DEFAULT_ID_UNIVERSIGN.toString())));
+            .andExpect(jsonPath("$.[*].idUniversign").value(hasItem(DEFAULT_ID_UNIVERSIGN.toString())))
+            .andExpect(jsonPath("$.[*].urlUniversign").value(hasItem(DEFAULT_URL_UNIVERSIGN.toString())));
     }
     
     @Test
@@ -177,7 +166,8 @@ public class TransactionResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(transaction.getId()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
-            .andExpect(jsonPath("$.idUniversign").value(DEFAULT_ID_UNIVERSIGN.toString()));
+            .andExpect(jsonPath("$.idUniversign").value(DEFAULT_ID_UNIVERSIGN.toString()))
+            .andExpect(jsonPath("$.urlUniversign").value(DEFAULT_URL_UNIVERSIGN.toString()));
     }
 
     @Test
@@ -198,7 +188,8 @@ public class TransactionResourceIntTest {
         Transaction updatedTransaction = transactionRepository.findById(transaction.getId()).get();
         updatedTransaction
             .status(UPDATED_STATUS)
-            .idUniversign(UPDATED_ID_UNIVERSIGN);
+            .idUniversign(UPDATED_ID_UNIVERSIGN)
+            .urlUniversign(UPDATED_URL_UNIVERSIGN);
 
         restTransactionMockMvc.perform(put("/api/transactions")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -211,6 +202,7 @@ public class TransactionResourceIntTest {
         Transaction testTransaction = transactionList.get(transactionList.size() - 1);
         assertThat(testTransaction.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testTransaction.getIdUniversign()).isEqualTo(UPDATED_ID_UNIVERSIGN);
+        assertThat(testTransaction.getUrlUniversign()).isEqualTo(UPDATED_URL_UNIVERSIGN);
     }
 
     @Test
